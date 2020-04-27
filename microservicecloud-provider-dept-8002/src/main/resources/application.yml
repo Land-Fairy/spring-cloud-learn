@@ -1,0 +1,46 @@
+server:
+  port: 8002
+mybatis:
+  # mybatis 配置文件所在的路径
+  config-location: classpath:mybatis/mybatis.xml
+  # 指定 Entity 包下所有 类进行别名
+  type-aliases-package: com.day.springcloud.entity
+  # mapper 映射文件
+  # 注意 /mapper/**/*.xml 表示 /mapper 下任意多层路径下的 xml 文件
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+spring:
+  application:
+    name: microservicecloud-dept
+
+  datasource:
+    # 数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 为什么没有使用 jdbc 那个类型的?
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://127.0.0.1:3306/cloudDB02
+    username: root
+    password: 123456
+    dbcp2:
+      # 数据库 连接池的 最小维持连接数
+      min-idle: 5
+      # 初始化连接数
+      initial-size: 5
+      # 最大连接数
+      max-total: 5
+      # 等待 获取连接 的最大超时时间
+      max-wait-millis: 200
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  # 实例ID，显示在 Status 一栏
+  instance:
+      instance-id: microservicecloud-dept8002
+
+info:
+  app.name: provider-microservicecloud
+  company.name: www.baidu.com
+  build.artifactld: $projcect.artifactld$
+  build.version: $project.version$
