@@ -1,0 +1,35 @@
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  # 实例ID，显示在 Status 一栏
+  instance:
+      instance-id: zuul-8001
+server:
+  port: 9527
+
+spring:
+  application:
+    name: microservice-zuul-gateway
+
+info:
+  app.name: microservice-zuul-gateway
+  company.name: www.baidu.com
+  build.artifactld: $projcect.artifactld$
+  build.version: $project.version$
+
+
+# 配置之前 http://localhost:9527/microservicecloud-dept/dept/get/2
+# 配置之后 http://localhost:9527/mydept/dept/get/2
+zuul:
+  routes:
+    mydept.serviceId: microservicecloud-dept
+    mydept.path: /mydept/**
+  # 屏蔽 服务名 (此时在使用 http://localhost:9527/microservicecloud-dept/dept/get/2 不能访问)
+  ignored-services: microservicecloud-dept
+
+  # 屏蔽所有服务
+#  ignored-services: "*"
+  # 设置公共前缀
+  prefix: "/day"
