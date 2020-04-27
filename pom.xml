@@ -16,6 +16,8 @@
         <module>microservicecloud-provider-dept-8001</module>
         <module>microservicecloud-provider-dept-8002</module>
         <module>microservicecloud-provicer-dept-8003</module>
+        <module>microservicecloud-provider-dept-hystrix-8001</module>
+        <module>microservicecloud-consumer-dept-feign</module>
     </modules>
 
     <!-- 打包方式为 pom -->

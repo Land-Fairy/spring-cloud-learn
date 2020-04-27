@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@FeignClient(value = "MICROSERVICECLOUD-DEPT")
-public interface DeptClientService {
+@FeignClient(value = "MICROSERVICECLOUD-DEPT", fallbackFactory = DeptClientServiceFallbackFactory.class)
+public interface DeptClientService{
 
     @GetMapping("/dept/get/{id}")
     public Dept get(@PathVariable("id") long id);
